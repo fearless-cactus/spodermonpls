@@ -120,3 +120,24 @@ h1 {
 .close:hover {
   transform: scale(1.2);
 }
+
+/* =========================
+   ERROR MESSAGE IMAGE UNVAILABLE
+========================= */
+.gallery-item {
+  position: relative;
+}
+
+.img-error-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 15px;
+}

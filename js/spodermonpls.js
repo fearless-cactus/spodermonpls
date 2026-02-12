@@ -27,3 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+const images = document.querySelectorAll(".gallery-item img");
+
+images.forEach(img => {
+
+    img.onerror = function () {
+        const text = document.createElement("div");
+        text.className = "img-error-text";
+        text.innerText = "Image not available";
+
+        img.style.visibility = "hidden";
+        img.parentElement.appendChild(text);
+    };
+
+});
+
