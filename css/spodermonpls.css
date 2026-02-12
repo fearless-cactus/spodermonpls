@@ -1,10 +1,21 @@
-body {
-  background: #f2f2f2;
-  overflow: auto;
-  scrollbar-width: none;
+/* =========================
+   RESET
+========================= */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   BODY & BACKGROUND
+========================= */
+body {
   font-family: Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
   background-color: #b30000;
+
   background-image:
     radial-gradient(circle at center, transparent 0 40%, black 41% 42%, transparent 43%),
     repeating-linear-gradient(0deg, black 0 2px, transparent 2px 40px),
@@ -13,65 +24,99 @@ body {
     repeating-linear-gradient(-45deg, black 0 1px, transparent 1px 60px);
 }
 
+/* Scroll lock */
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* =========================
+   TITLE
+========================= */
 h1 {
   text-align: center;
   padding: 20px;
+  color: white;
 }
 
+/* =========================
+   GALLERY GRID
+========================= */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  gap: 20px;
   padding: 20px;
   max-width: 1200px;
   margin: auto;
+
+  /* Desktop: altijd 4 kolommen */
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .gallery img {
   width: 100%;
-  height: 250px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 15px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform 0.2s ease;
 }
 
 .gallery img:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
 .lightbox {
   display: none;
   position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.lightbox.active {
+  display: flex;
 }
 
 .lightbox-img {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
+  top: 25px;
+  right: 35px;
+  font-size: 45px;
   color: white;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
-body::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  scrollbar-width: none;
+.close:hover {
+  transform: scale(1.2);
 }
